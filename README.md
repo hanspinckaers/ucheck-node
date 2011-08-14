@@ -26,27 +26,33 @@ Install
 	
 API
 ---
-Werkt als volgt:
 	
-	// Cijfers in JSON
+**Cijfers in JSON**
+
 	http://localhost:3000/cijfers/<s0000000>/<wachtwoord>/
 	
-	// Inschrijvingen in JSON
-	http://localhost:3000/inschrijvingen/<s0000000>/<wachtwoord>/11/
-	// Jaar = 10 voor inschrijvingen in 2010-2011
-	// Jaar = 11 voor inschrijvingen in 2011-2012
+**Inschrijvingen in JSON**
+
+	http://localhost:3000/inschrijvingen/<s0000000>/<wachtwoord>/<jaar>/
+
+*	*Jaar = 10* voor inschrijvingen in 2010-2011
+*	*Jaar = 11* voor inschrijvingen in 2011-2012
 		 
-	// Voortgang in HTML
+**Voortgang in HTML**
+
 	http://localhost:3000/cijfers/<s0000000>/<wachtwoord>/	 
 		
-	// Asynchroon
+**Asynchroon**
+
 	http://localhost:3000/cijfers_token/<s0000000>/<wachtwoord>/	
-	http://localhost:3000/inschrijvingen_token/<s0000000>/<wachtwoord>/
-	// Bewaar de token, roep later dan deze call aan:
+	http://localhost:3000/inschrijvingen_token/<s0000000>/<wachtwoord>/<jaar>/
+
+Bewaar de token, roep later dan deze call aan:
+
 	http://localhost:3000/token/<token>/
 	
-	// De JSON van cijfers en inschrijvingen worden een minuut bewaard. Als de JSON niet aanwezig is krijg je "invalid token" terug.
-	// Als de JSON nog niet gedownload is blijft de connectie 'alive' tot de JSON wordt gestuurd.
+De JSON van cijfers en inschrijvingen worden een minuut bewaard. Als de token niet aanwezig is krijg je "invalid token" terug.
+Als de JSON nog niet gedownload is blijft de connectie 'alive' tot de JSON wordt gestuurd.
 		 
 Servers
 -------
