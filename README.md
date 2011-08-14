@@ -73,10 +73,10 @@ De node.js-backend regelt:
 
 Ik heb 2 node.js servers staan. Eén op een betaalde hosting in Amsterdam en nog eentje op het gratis node.js hostingplatform [nodester](http://nodester.com/). De betaalde hosting is aanzienlijk sneller, daarom gebruik ik hem nog steeds.
 	
-	Amsterdam: http://109.72.92.55:3000/
-	Nodester: http://ucheck.nodester.com/
+1.	Amsterdam [`http://109.72.92.55:3000/`](http://109.72.92.55:3000/)
+2.	Nodester: [`http://ucheck.nodester.com/`](http://ucheck.nodester.com/)
 
 Niet inbegrepen
 ---------------
 
-In de repo zijn niet de encryptie en decryptie functies van uCheck toegevoegd. Deze blijven geheim ten behoeve van de beveiliging van uCheck.
+Op mijn servers is nog de module 'Prowl' aanwezig, enkele verwijzingen staan nog in de code. Met Prowl kan ik errors pushen naar mijn telefoon.
