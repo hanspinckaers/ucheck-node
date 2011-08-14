@@ -1,0 +1,5 @@
+.DS_Store
+oud/*
+log
+prowler-setup.js
+node-modules/*
