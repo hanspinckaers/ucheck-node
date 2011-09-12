@@ -71,9 +71,9 @@ De node.js-backend regelt:
 *	Het scrapen van de cijfers, inschrijvingen naar JSON
 *	Het scrapen van de voortgang naar HTML (wordt geparst door de php-backend)
 
-Ik heb 2 node.js servers staan. Eén op een betaalde hosting in Amsterdam en nog eentje op het gratis node.js hostingplatform [nodester](http://nodester.com/). De betaalde hosting is aanzienlijk sneller, daarom gebruik ik hem nog steeds.
-	
-1.	Amsterdam [`http://109.72.92.55:3000/`](http://109.72.92.55:3000/)
+Ik heb 2 node.js servers staan. 
+
+1.	Amazon (Ierland): [`http://ec2-79-125-78-169.eu-west-1.compute.amazonaws.com:3000/`](http://ec2-79-125-78-169.eu-west-1.compute.amazonaws.com:3000/)
 2.	Nodester: [`http://ucheck.nodester.com/`](http://ucheck.nodester.com/)
 
 Niet inbegrepen
