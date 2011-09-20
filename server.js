@@ -634,7 +634,9 @@ function dom2inschrijvingen(dom){
 					{
 						var regex = /([0-9A-Z]*)-(.*)/;
 						var text = el.children[1].children[1].children[0].raw;
-					
+						
+						vak_dict['code'] = text;
+
 						var match = text.match(regex);
 						//console.log(match);
 						
