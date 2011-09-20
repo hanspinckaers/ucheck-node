@@ -527,7 +527,7 @@ function dom2cijfers(dom){
 		var cijfer = vakken[i];
 		var nextcijfer = vakken[i+1];
 		
-		var usisid = cijfer['id'].substring(0,-1);		
+		var usisid = cijfer['id'].substring(0, cijfer['id'].length - 1);		
 		
 		if((cijfer['cijfer'] == "-" || cijfer['cijfer'] == "" || cijfer['cijfer'] == " ") && cijfer['ects'] == "") 
 		{			
@@ -536,8 +536,8 @@ function dom2cijfers(dom){
 		}
 		
 		if(nextcijfer){
-			var nextusisid = nextcijfer['id'].substring(0,-1);
-		
+			var nextusisid = nextcijfer['id'].substring(0, nextcijfer['id'].length - 1);
+
 			if(usisid == nextusisid && cijfer['cijfer'] == nextcijfer['cijfer'] && cijfer['rawdatum'] == nextcijfer['rawdatum'])
 			{
 				if(cijfer['ects'] == nextcijfer['ects'])

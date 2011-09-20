@@ -1,0 +1,14 @@
+{
+  "name"          : "ucheck-node",
+  "description"   : "A scraping service above the (terrible) PeopleSoft implementation of Leiden University.",
+  "homepage"      : "https://github.com/HansPinckaers/ucheck-node",
+  "keywords"      : ["ucheck"],
+  "author"        : "Hans Pinckaers <hans.pinckaers@gmail.com>",
+  "contributors": [],
+  "dependencies"  : {
+                      "htmlparser"  : "1.7.3",
+                      "soupselect" : "0.2.0",
+                      "express"    : "2.4.5"
+                    },
+  "version"       : "1.0.0"
+}
