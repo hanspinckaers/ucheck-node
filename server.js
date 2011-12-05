@@ -491,7 +491,7 @@ function dom2cijfers(dom){
 							text = el.children[1].children[0].raw;
 							rij_dict['cijfer'] = text;
 							
-							if(!IsNumeric(text) && text == "O")
+							if((!IsNumeric(text) && text == "O") || (!IsNumeric(text) && text == "NVO"))
 							{
 								rij_dict['gehaald'] = false;
 							} else if(text < 5.5) {
