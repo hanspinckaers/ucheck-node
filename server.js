@@ -400,11 +400,27 @@ function req_cijfers(user, password, callback)
 		
 		var cijfers_req = https.request(options, function(res) {
 			console.log('STATUS: ' + res.statusCode);
+ 
+ 			var html;
+
 			var handler = new htmlparser.DefaultHandler(function (error, dom){
 				if (error){
 					console.log(error);
 				} else {
-					callback(dom2cijfers(dom));
+					var json = dom2cijfers(dom);
+					
+					if(html.search("Your User ID and/or Password are invalid.") != -1)
+					{
+						json["error"] = "loginerror";
+					} else if(html.search("Mijn studieresultaten") == -1)
+					{
+						json["error"] = "usiserror";
+					}
+					else {
+						
+					}
+
+					callback(json);
 				}
 			});
 				
@@ -413,11 +429,13 @@ function req_cijfers(user, password, callback)
 			res.setEncoding('utf8');
 
 			res.on('data', function (chunk) {
+				html += chunk;
 				parser.parseChunk(chunk);
 			});
 			
 			res.on('end', function(){
 				parser.done();
+				console.log(html);
 			});
 		});
 		
