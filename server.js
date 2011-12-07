@@ -28,6 +28,7 @@ catch (e)
     console.log("Geen Prowl aanwezig: "+e);
 }
 
+
 var requests = [];
 
 var app = module.exports = express.createServer();
@@ -274,13 +275,15 @@ app.get('/', function(req, root_res)
 
 if (!module.parent) 
 {
-	console.log(process.env['app_port']);
-	if(process.env['app_port'])
-	{ 
-		app.listen(process.env['app_port']);
-	} else {
-		app.listen(3000);
-	}
+	// console.log(process.env['app_port']);
+	// if(process.env['app_port'])
+	// { 
+	// 	app.listen(process.env['app_port']);
+	// } else {
+	// 	app.listen(3000);
+	// }
+
+	app.listen(process.env.PORT || 8001)
 	
 	console.log("Express server listening on port %d", app.address().port);
 
