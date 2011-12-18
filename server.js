@@ -283,7 +283,7 @@ if (!module.parent)
 	// 	app.listen(3000);
 	// }
 
-	app.listen(process.env.PORT || 8001)
+	app.listen(process.env.PORT || 3000)
 	
 	console.log("Express server listening on port %d", app.address().port);
 
