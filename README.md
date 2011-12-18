@@ -59,22 +59,22 @@ Servers
 
 uCheck.nl draait op 2 servers. Eén met een php-backend en de ander met een node.js (serverside javascript) backend.
 
-De php-backend regelt:
+De [PHP backend](https://github.com/HansPinckaers/ucheck-php/) regelt:
 
 *	De front-end van uCheck (html, css, javascript)
 *	Het inschrijven/uitschrijven
 *	Elke nacht worden de vakken van alle studies gedownload om lokaal te cachen
 *	De api voor de uCheck iOS app
 
-De node.js-backend regelt:
+De [Node.js backend](https://github.com/HansPinckaers/ucheck-node/) regelt:
 
 *	Het scrapen van de cijfers, inschrijvingen naar JSON
 *	Het scrapen van de voortgang naar HTML (wordt geparst door de php-backend)
 
 Ik heb 2 node.js servers staan. 
 
-1.	Amazon (Ierland): [`http://ec2-79-125-78-169.eu-west-1.compute.amazonaws.com:3000/`](http://ec2-79-125-78-169.eu-west-1.compute.amazonaws.com:3000/)
-2.	Nodester: [`http://ucheck.nodester.com/`](http://ucheck.nodester.com/)
+1.	Amazon EC2 (Ierland): [`http://ec2-79-125-78-169.eu-west-1.compute.amazonaws.com:3000/`](http://ec2-79-125-78-169.eu-west-1.compute.amazonaws.com:3000/)
+2.	No.de: [`http://ucheck.no.de/`](http://ucheck.no.de/)
 
 Niet inbegrepen
 ---------------
