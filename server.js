@@ -79,7 +79,7 @@ app.get('\/cijfers_token\/(([^\/]+))\/(([^\/]+))\/?', function(req, res)
 	});	
 	
 	setTimeout(function(){
-		console.log("deleted: "+token);
+		// console.log("deleted: "+token);
 		
 		if(requests[token] && "listener" in requests[token]){
 			var token_res = requests[token]["listener"];
@@ -110,7 +110,7 @@ app.get('\/inschrijvingen_token\/(([^\/]+))\/(([^\/]+))\/(([^\/]+))?\/?', functi
 	});
 	
 	setTimeout(function(){
-		console.log("deleted: "+token);
+		// console.log("deleted: "+token);
 	
 		if(requests[token] && "listener" in requests[token]){
 			var token_res = requests[token]["listener"];
@@ -192,7 +192,7 @@ app.get('\/voortgang\/(([^\/]+))\/(([^\/]+))\/?', function(req, root_res)
 		};
 	
 		var req_second = https.request(options, function(res) {		
-			console.log('STATUS: ' + res.statusCode);
+			// console.log('STATUS: ' + res.statusCode);
 		
 			//var cookies = res.headers['set-cookie'];
 			
@@ -210,7 +210,7 @@ app.get('\/voortgang\/(([^\/]+))\/(([^\/]+))\/?', function(req, root_res)
 			};
 			
 			var voortgang_req = https.request(options, function(res) {
-				console.log('STATUS: ' + res.statusCode);
+				// console.log('STATUS: ' + res.statusCode);
 			
 				var html = "";
 				
@@ -315,7 +315,7 @@ function req_inschrijvingen(user, password, year, callback)
 
 
 	var req = https.request(options, function(res) {
-		console.log('STATUS: ' + res.statusCode);
+		// console.log('STATUS: ' + res.statusCode);
 	
 		var cookies = res.headers['set-cookie'];
 		
@@ -331,7 +331,7 @@ function req_inschrijvingen(user, password, year, callback)
 		};
 		
 		var inschrijvingen_req = https.request(options, function(res) {
-			console.log('STATUS: ' + res.statusCode);
+			// console.log('STATUS: ' + res.statusCode);
 			
 			var handler = new htmlparser.DefaultHandler(function (error, dom){
 				if (error){
@@ -386,7 +386,7 @@ function req_cijfers(user, password, callback)
 
 
 	var req = https.request(options, function(res) {
-		console.log('STATUS: ' + res.statusCode);
+		// console.log('STATUS: ' + res.statusCode);
 	
 		var cookies = res.headers['set-cookie'];
 		
@@ -402,7 +402,7 @@ function req_cijfers(user, password, callback)
 		};
 		
 		var cijfers_req = https.request(options, function(res) {
-			console.log('STATUS: ' + res.statusCode);
+			// console.log('STATUS: ' + res.statusCode);
  
  			var html;
 
@@ -592,9 +592,9 @@ function dom2cijfers(dom){
 	
 	vakken = newvakken;
 	
-	var end = new Date().getTime();
-	var time = end - start;
-	console.log('Execution time: ' + time + 'ms \n');
+	// var end = new Date().getTime();
+	// var time = end - start;
+	// console.log('Execution time: ' + time + 'ms \n');
 
 	var json = {'vakken':vakken, 'overige': overige};
 	return json;
@@ -706,9 +706,9 @@ function dom2inschrijvingen(dom){
 		}
 	});
 
-	var end = new Date().getTime();
-	var time = end - start;
-	console.log('Execution time: ' + time + 'ms \n');
+	// var end = new Date().getTime();
+	// var time = end - start;
+	// // console.log('Execution time: ' + time + 'ms \n');
 
 	var json = {'inschrijvingen':inschrijvingen, 'studies': studies};
 	return json;
@@ -719,15 +719,15 @@ function IsNumeric(input)
  	return (input - 0) == input && input.length > 0;
 }
 
-// process.on("uncaughtException", function (exception) {
-// 	if(notification)
-// 		{
-// 	    notification.send({
-// 	        'application': 'ucheck-node',
-// 	        'event': 'uncaughtException - '+exception.message,
-// 	        'description': exception.stack
-// 	    });
-//     }
-// });
+process.on("uncaughtException", function (exception) {
+	if(notification)
+		{
+	    notification.send({
+	        'application': 'ucheck-node',
+	        'event': 'uncaughtException - '+exception.message,
+	        'description': exception.stack
+	    });
+    }
+});
 
 
