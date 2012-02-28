@@ -410,6 +410,8 @@ function req_cijfers(user, password, callback)
 				if (error){
 					console.log(error);
 				} else {
+					// console.log(html);
+
 					var json = dom2cijfers(dom);
 					
 					if(html.search("Your User ID and/or Password are invalid.") != -1)
@@ -460,6 +462,7 @@ function req_cijfers(user, password, callback)
 
 
 function dom2cijfers(dom){
+	// console.log(dom);
 	var start = new Date().getTime();
 	
 	var trs = select(dom, 'table[class=PSLEVEL1GRIDWBO] tr');
@@ -473,7 +476,8 @@ function dom2cijfers(dom){
 			{
 				eerste=false;
 			} else {
-			
+				// console.log(el);
+
 				var tds = el.children;
 			
 				var td_counter = 0;
@@ -487,7 +491,7 @@ function dom2cijfers(dom){
 						
 						if(td_counter == 0)
 						{		
-							text = el.children[1].children[0].raw;
+							text = el.children[1].children[0].children[0].raw;
 							
 							rij_dict['id'] = text;
 							
@@ -498,18 +502,20 @@ function dom2cijfers(dom){
 
 						} else if(td_counter == 1)
 						{
-							text = el.children[1].children[1].children[0].raw;
-							
+							// console.log(JSON.stringify(el.children[1].children[0].children[0].children[0]));
+
+							text = el.children[1].children[0].children[0].children[0].raw;
+							// console.log(text);
 							rij_dict['vak'] = text;
 						} else if(td_counter == 2)
 						{
-							text = el.children[1].children[0].raw;
+							text = el.children[1].children[0].children[0].raw;
 							
 							var d=new Date(text);
 							rij_dict['date'] = d;
 						} else if(td_counter == 3)
 						{
-							text = el.children[1].children[0].raw;
+							text = el.children[1].children[0].children[0].raw;
 							rij_dict['cijfer'] = text;
 							
 							if((!IsNumeric(text) && text == "O") || (!IsNumeric(text) && text == "NVO"))
@@ -522,7 +528,7 @@ function dom2cijfers(dom){
 							}
 						} else if(td_counter == 4){
 							if(el.children.length > 1){
-								text = el.children[1].children[0].raw;
+								text = el.children[1].children[0].children[0].raw;
 								text = text.replace("\n","").replace("&nbsp;","")
 							} else {
 							}
@@ -624,11 +630,11 @@ function dom2inschrijvingen(dom){
 					
 					if (td_counter == 0)
 					{						
-						vak_dict['stopid'] = el.children[1].attribs.name.replace("DERIVED_REGFRM1_SSR_SELECT$chk", "");
+						vak_dict['stopid'] = el.children[1].children[0].attribs.name.replace("DERIVED_REGFRM1_SSR_SELECT$chk", "");
 					}
 					else if (td_counter == 1)
 					{
-						var text = el.children[1].children[0].raw;
+						var text = el.children[1].children[0].children[0].raw;
 						if(studies.indexOf(text) == -1) studies.push(text);
 
 						vak_dict['origineel_id'] = text;
@@ -636,14 +642,14 @@ function dom2inschrijvingen(dom){
 					}
 					else if (td_counter == 2)//Studiegidsnr
 					{
-						var text = el.children[1].children[0].raw;
+						var text = el.children[1].children[0].children[0].raw;
 						vak_dict['origineel_id'] += " "+text;
 						vak_dict['usis_id'] = text;
 					}
 
 					else if (td_counter == 3) //omschtijving
 					{
-						var text = el.children[1].children[0].raw;
+						var text = el.children[1].children[0].children[0].raw;
 
 						vak_dict['vak'] = text;					
 					}
@@ -654,7 +660,7 @@ function dom2inschrijvingen(dom){
 					else if (td_counter == 5)
 					{
 						var regex = /([0-9A-Z]*)-(.*)/;
-						var text = el.children[1].children[1].children[0].raw;
+						var text = el.children[1].children[0].children[0].children[0].raw;
 						
 						vak_dict['code'] = text;
 
@@ -681,7 +687,7 @@ function dom2inschrijvingen(dom){
 						
 					} else if (td_counter == 6)
 					{
-						var text = el.children[1].children[3].attribs.alt;
+						var text = el.children[1].children[0].children[3].attribs.alt;
 
 						vak_dict['status'] = text;
 					}
@@ -713,15 +719,15 @@ function IsNumeric(input)
  	return (input - 0) == input && input.length > 0;
 }
 
-process.on("uncaughtException", function (exception) {
-	if(notification)
-		{
-	    notification.send({
-	        'application': 'ucheck-node',
-	        'event': 'uncaughtException - '+exception.message,
-	        'description': exception.stack
-	    });
-    }
-});
+// process.on("uncaughtException", function (exception) {
+// 	if(notification)
+// 		{
+// 	    notification.send({
+// 	        'application': 'ucheck-node',
+// 	        'event': 'uncaughtException - '+exception.message,
+// 	        'description': exception.stack
+// 	    });
+//     }
+// });
 
 
