@@ -438,7 +438,7 @@ function req_cijfers(user, password, callback)
 			
 			res.on('end', function(){
 				parser.done();
-				console.log(html);
+				// console.log(html);
 			});
 		});
 		
