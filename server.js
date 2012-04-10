@@ -52,13 +52,13 @@ app.configure(function(){
 	app.use(express.static(__dirname + '/public'));
 });
 
-app.configure('development', function(){
-	app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
-});
+// app.configure('development', function(){
+// 	app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+// });
 
-app.configure('production', function(){
-	app.use(express.errorHandler()); 
-});
+// app.configure('production', function(){
+// 	app.use(express.errorHandler()); 
+// });
 
 app.get('\/cijfers_token\/(([^\/]+))\/(([^\/]+))\/?', function(req, res)
 {
@@ -379,7 +379,7 @@ function req_cijfers(user, password, callback)
 	var options = {
 		host: 'usis.leidenuniv.nl',
 		port: 443,
-		path: '/psc/S040PRD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES_2.SSS_MY_CRSEHIST.GBL',
+		path: '/psc/S040PRD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSS_MY_CRSEHIST.GBL',
 		method: 'POST',
 		headers: {'User-Agent': 'Fake Mozilla 5.0', 'Content-Length':data.length,'Content-Type':'application/x-www-form-urlencoded', 'Cookie' : '' }
 	};
@@ -396,7 +396,7 @@ function req_cijfers(user, password, callback)
 		var options = {
 			host: 'usis.leidenuniv.nl',
 			port: 443,
-			path: '/psc/S040PRD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES_2.SSS_MY_CRSEHIST.GBL?',
+			path: '/psc/S040PRD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSS_MY_CRSEHIST.GBL?',
 			method: 'GET',
 			headers: {'User-Agent': 'Fake Mozilla 5.0', 'Cookie' : cookies	}
 		};
@@ -445,13 +445,14 @@ function req_cijfers(user, password, callback)
 		});
 		
 		cijfers_req.on('error', function(err) {
-			console.log(err);
+			console.log("hier?"+err);
 		}); 
 
 		cijfers_req.end();		
 	});
 	
 	req.on('error', function(err) {
+		// console.log("hier2?"+err);
 		console.log(err);
 	}); 
 	
@@ -489,7 +490,7 @@ function dom2cijfers(dom){
 					if(el.name == "td") {
 						var text = "";
 						
-						if(td_counter == 0)
+						if(td_counter == 1)
 						{		
 							text = el.children[1].children[0].children[0].raw;
 							
@@ -500,20 +501,20 @@ function dom2cijfers(dom){
 							rij_dict['studie'] = arr[0];
 							rij_dict['usis_id'] = arr[1];
 
-						} else if(td_counter == 1)
+						} else if(td_counter == 2)
 						{
 							// console.log(JSON.stringify(el.children[1].children[0].children[0].children[0]));
 
 							text = el.children[1].children[0].children[0].children[0].raw;
 							// console.log(text);
 							rij_dict['vak'] = text;
-						} else if(td_counter == 2)
+						} else if(td_counter == 3)
 						{
 							text = el.children[1].children[0].children[0].raw;
 							
 							var d=new Date(text);
 							rij_dict['date'] = d;
-						} else if(td_counter == 3)
+						} else if(td_counter == 4)
 						{
 							text = el.children[1].children[0].children[0].raw;
 							rij_dict['cijfer'] = text;
@@ -526,7 +527,7 @@ function dom2cijfers(dom){
 							} else {
 								rij_dict['gehaald'] = true;
 							}
-						} else if(td_counter == 4){
+						} else if(td_counter == 5){
 							if(el.children.length > 1){
 								text = el.children[1].children[0].children[0].raw;
 								text = text.replace("\n","").replace("&nbsp;","")
