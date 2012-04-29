@@ -518,11 +518,13 @@ function dom2cijfers(dom){
 						{
 							text = el.children[1].children[0].children[0].raw;
 							rij_dict['cijfer'] = text;
+							var cijferNumber = text.replace(",", ".");
 							
-							if((!IsNumeric(text) && text == "O") || (!IsNumeric(text) && text == "NVO"))
+							
+							if((!IsNumeric(cijferNumber) && text == "O") || (!IsNumeric(text) && text == "NVO"))
 							{
 								rij_dict['gehaald'] = false;
-							} else if(text < 5.5) {
+							} else if(cijferNumber < 5.5) {
 								rij_dict['gehaald'] = false;
 							} else {
 								rij_dict['gehaald'] = true;
